@@ -7,6 +7,20 @@ name: Multibuild Nanopct4 armbian
 
 on:
   repository_dispatch:
+  workflow_dispatch: # 支持手动触发并交互式选择参数（如选择 Ubuntu 版本 jammy/noble 等）
+    inputs:
+      armbian_board:
+        description: "Select device board."
+        required: false
+        default: "nanopct4"
+        type: choice
+        options:
+          - all
+          - eaidk-610
+          - firefly-rk3399
+          - fmx1-pro
+          - nanopct4
+          - nanopct6
 
 env:
   TZ: America/New_York
@@ -127,7 +141,7 @@ jobs:
         run: |
           # Compile method and parameter description: https://docs.armbian.com/Developer-Guide_Build-Options
           cd build/
-              ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=nanopct4 BRANCH=current BUILD_MINIMAL=no \
+              ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=${{ input.armbian_board }} BRANCH=current BUILD_MINIMAL=no \
                            BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no \
                            COMPRESS_OUTPUTIMAGE="sha" SHARE_LOG=yes
           echo "status=success" >> ${GITHUB_OUTPUT}
