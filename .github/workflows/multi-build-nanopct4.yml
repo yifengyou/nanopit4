@@ -45,7 +45,7 @@ jobs:
           - sid
           - trixie
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 10
 
     steps:
       - name: Checkout
