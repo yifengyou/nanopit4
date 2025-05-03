@@ -141,7 +141,7 @@ jobs:
         run: |
           # Compile method and parameter description: https://docs.armbian.com/Developer-Guide_Build-Options
           cd build/
-              ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=${{ input.armbian_board }} BRANCH=current BUILD_MINIMAL=no \
+              ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=current BUILD_MINIMAL=no \
                            BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no \
                            COMPRESS_OUTPUTIMAGE="sha" SHARE_LOG=yes
           echo "status=success" >> ${GITHUB_OUTPUT}
