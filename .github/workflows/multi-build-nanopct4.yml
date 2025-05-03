@@ -3,7 +3,7 @@
 # Copyright (C) 2021 https://github.com/ophub/amlogic-s9xxx-armbian
 #==========================================================================
 
-name: Multibuild Smart-Am60 armbian
+name: Multibuild Nanopct4 armbian
 
 on:
   repository_dispatch:
