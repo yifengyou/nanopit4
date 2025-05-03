@@ -51,38 +51,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: check GITHUB_TOKEN
-        id: check_token
-        run: |
-          if [ -z "${{ secrets.GITHUB_TOKEN }}" ]; then
-            echo "GITHUB_TOKEN not set, abort"
-            exit 1
-          else
-            echo "GITHUB_TOKEN already set."
-          fi
-          cat /proc/cpuinfo > envinfo.txt
-          df -h >> envinfo.txt
-          lsblk >> envinfo.txt
-          free -w -h >> envinfo.txt
-          cat /etc/*release >> envinfo.txt
-
-      - name: test GITHUB_TOKEN
-        uses: ncipollo/release-action@main
-        if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
-        with:
-          tag: "workflow_envinfo"
-          artifacts: envinfo.txt
-          allowUpdates: true
-          removeArtifacts: false
-          replacesArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |
-            ### Github Workflow environment info gather
-            - cpuinfo
-            - disk info
-            - memory info
-            - os release info
-
       - name: Initialization environment
         id: init
         env:
