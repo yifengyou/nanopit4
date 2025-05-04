@@ -116,6 +116,7 @@ jobs:
               ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=current BUILD_MINIMAL=no \
                            BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no \
                            COMPRESS_OUTPUTIMAGE="sha" SHARE_LOG=yes
+          ls -alh /builder/build/output/images/
           echo "status=success" >> ${GITHUB_OUTPUT}
 
 
@@ -124,7 +125,7 @@ jobs:
         if: ${{ steps.compile.outputs.status }} == 'success' && !cancelled()
         with:
           tag: ${{ steps.compile.outputs.build_tag }}
-          artifacts: build/output/images/*
+          artifacts: /builder/build/output/images/*
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
