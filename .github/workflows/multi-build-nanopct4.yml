@@ -6,11 +6,6 @@
 name: Multibuild Nanopct4 armbian
 
 on:
-  push:                   # 推送时触发
-    branches:
-      - master            # 只在 master 分支触发
-  schedule:               # 定时触发
-    - cron: '0 6 * * *'   # 每天零点触发
   repository_dispatch:
   workflow_dispatch: # 支持手动触发并交互式选择参数（如选择 Ubuntu 版本 jammy/noble 等）
     inputs:
