@@ -3,7 +3,7 @@
 # Copyright (C) 2025 https://github.com/yifengyou/nanopit4
 #==========================================================================
 
-name: Multibuild Nanopct4 armbian
+name: Auto Nanopct4 armbian
 
 on:
   push:                   # 推送时触发
@@ -14,7 +14,6 @@ on:
 
 env:
   TZ: America/New_York
-  ROOTFS_SCRIPT: compile-kernel/tools/script/armbian_rootfs.sh
 
 jobs:
   build:
@@ -26,8 +25,6 @@ jobs:
         set_release:
           - bookworm
           - bullseye
-          - buster
-          - focal
           - jammy
           - noble
           - oracular
