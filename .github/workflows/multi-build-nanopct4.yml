@@ -106,6 +106,7 @@ jobs:
         if: ${{ steps.down.outputs.status }} == 'success' && !cancelled()
         run: |
           # Compile method and parameter description: https://docs.armbian.com/Developer-Guide_Build-Options
+          echo "build_tag=Armbian_${{ inputs.armbian_board }}_${{ matrix.set_release }}_$(date +"%Y.%m.%d_%H%M%S")" >> ${GITHUB_OUTPUT}
           cd build/
               ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=${{ inputs.armbian_board }} BRANCH=current BUILD_MINIMAL=no \
                            BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no \
@@ -117,7 +118,7 @@ jobs:
         uses: ncipollo/release-action@main
         if: ${{ steps.compile.outputs.status }} == 'success' && !cancelled()
         with:
-          tag: ${{ steps.clean.outputs.build_tag }}
+          tag: ${{ steps.compile.outputs.build_tag }}
           artifacts: build/output/images/*
           allowUpdates: true
           removeArtifacts: false
