@@ -6,9 +6,9 @@
 name: Multibuild Nanopct4 armbian
 
 on:
-  push:                    # 推送时触发
+  push:                   # 推送时触发
     branches:
-      - main              # 只在 main 分支触发
+      - master            # 只在 master 分支触发
   schedule:               # 定时触发
     - cron: '0 6 * * *'   # 每天零点触发
   repository_dispatch:
