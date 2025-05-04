@@ -10,7 +10,7 @@ on:
     branches:
       - main              # 只在 main 分支触发
   schedule:               # 定时触发
-    - cron: '0 0 * * *'   # 每天零点触发
+    - cron: '0 6 * * *'   # 每天零点触发
   repository_dispatch:
   workflow_dispatch: # 支持手动触发并交互式选择参数（如选择 Ubuntu 版本 jammy/noble 等）
     inputs:
