@@ -100,7 +100,7 @@ jobs:
           cd build/
               ./compile.sh RELEASE=${{ matrix.set_release }} BOARD=nanopct4 BRANCH=current BUILD_MINIMAL=no \
                            BUILD_ONLY=default HOST=armbian BUILD_DESKTOP=no EXPERT=yes KERNEL_CONFIGURE=no \
-                           COMPRESS_OUTPUTIMAGE="sha" SHARE_LOG=yes
+                           COMPRESS_OUTPUTIMAGE="sha,img,xz" SHARE_LOG=yes
           ls -alh /builder/build/output/images/
           echo "status=success" >> ${GITHUB_OUTPUT}
 
